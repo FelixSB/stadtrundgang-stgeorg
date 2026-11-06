@@ -1,0 +1,758 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Rundgang Guide</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Source+Sans+3:wght@400;600&family=IBM+Plex+Mono:wght@500&display=swap">
+<style>
+  :root {
+    --paper: #eef0ee;
+    --paper-raised: #f9faf9;
+    --ink: #20242a;
+    --muted: #676f72;
+    --line: #d7dcda;
+    --patina: #234b46;
+    --patina-dim: #3e6862;
+    --rust: #20242a;
+    --rust-dim: #454c52;
+    --focus: #3b5ba9;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --paper: #1c2023;
+      --paper-raised: #262b2f;
+      --ink: #eceeec;
+      --muted: #9aa2a6;
+      --line: #3b4145;
+      --patina: #7fc2b4;
+      --patina-dim: #5c8e83;
+      --rust: #eceeec;
+      --rust-dim: #b6bcc0;
+      --focus: #7f9bdc;
+    }
+  }
+  :root[data-theme="dark"] {
+    --paper: #1c2023;
+    --paper-raised: #262b2f;
+    --ink: #eceeec;
+    --muted: #9aa2a6;
+    --line: #3b4145;
+    --patina: #7fc2b4;
+    --patina-dim: #5c8e83;
+    --rust: #eceeec;
+    --rust-dim: #b6bcc0;
+    --focus: #7f9bdc;
+  }
+
+  * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+  html, body { height: 100%; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "Source Sans 3", ui-sans-serif, system-ui, sans-serif;
+    line-height: 1.5;
+    display: flex;
+    justify-content: center;
+    min-height: 100vh;
+    min-height: 100dvh;
+    touch-action: manipulation;
+  }
+  h1, h2, h3 { font-family: "Fraunces", Georgia, serif; text-wrap: balance; margin: 0; }
+  .mono { font-family: "IBM Plex Mono", ui-monospace, monospace; }
+
+  .app {
+    width: 100%;
+    max-width: 460px;
+    min-height: 100vh;
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    padding: 20px 20px max(20px, env(safe-area-inset-bottom));
+  }
+
+  .topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 18px;
+  }
+  .topbar .title {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .progress-track {
+    flex: 1;
+    height: 7px;
+    border-radius: 999px;
+    margin: 0 12px;
+    overflow: hidden;
+    position: relative;
+    background: linear-gradient(90deg,
+      #e6472e 0%, #f2994a 20%, #f2d94e 40%, #3ba55d 60%, #3d7ce0 80%, #9b51e0 100%);
+  }
+  .progress-fill {
+    position: absolute;
+    top: 0; right: 0;
+    height: 100%;
+    background: var(--paper);
+    transition: width 0.4s ease;
+  }
+  .progress-label {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 12px;
+    color: var(--muted);
+    white-space: nowrap;
+  }
+
+  .card {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background: var(--paper-raised);
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    padding: 32px 26px;
+    animation: fade 0.35s ease;
+  }
+  @keyframes fade { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+
+  .kicker {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 10px;
+  }
+
+  h1.screen-title {
+    font-size: clamp(24px, 6vw, 30px);
+    font-weight: 600;
+    margin-bottom: 6px;
+  }
+
+  .address {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 14px;
+    color: var(--muted);
+    background: var(--paper);
+    border: 1px dashed var(--line);
+    border-radius: 10px;
+    padding: 12px 14px;
+    margin: 16px 0;
+  }
+
+  .desc {
+    font-size: 16px;
+    margin: 14px 0 6px;
+  }
+
+  .desc-list {
+    font-size: 16px;
+    margin: 6px 0 6px;
+    padding-left: 20px;
+  }
+  .desc-list li { margin: 2px 0; }
+
+  .greeting {
+    font-size: 16px;
+    margin: 14px 0 4px;
+  }
+
+  details.politik {
+    margin: 16px 0 6px;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 4px 14px;
+    background: var(--paper);
+  }
+  details.politik summary {
+    cursor: pointer;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--patina-dim);
+    padding: 10px 0;
+    list-style: none;
+  }
+  details.politik summary::-webkit-details-marker { display: none; }
+  details.politik summary::before {
+    content: "▸ ";
+  }
+  details.politik[open] summary::before {
+    content: "▾ ";
+  }
+  .politik-question {
+    font-style: italic;
+    font-size: 14.5px;
+    color: var(--muted);
+    margin: 2px 0 12px;
+  }
+  .politik-summary {
+    font-size: 14.5px;
+    margin: 0 0 14px;
+    padding: 8px 10px;
+    background: var(--paper-raised);
+    border-left: 3px solid var(--patina-dim);
+    border-radius: 4px;
+  }
+  .politik-answer {
+    font-size: 14.5px;
+    margin: 0 0 12px;
+  }
+  .politik-answer:last-child { margin-bottom: 8px; }
+  .politik-answer .party {
+    font-weight: 600;
+  }
+
+  .btn-row {
+    margin-top: auto;
+    padding-top: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 15px 20px;
+    border-radius: 12px;
+    border: none;
+    font-family: "Source Sans 3", sans-serif;
+    font-weight: 600;
+    font-size: 16px;
+    cursor: pointer;
+    transition: transform 0.1s ease, opacity 0.15s ease;
+  }
+  .btn:active { transform: scale(0.98); }
+  .btn-primary { background: var(--rust); color: var(--paper-raised); }
+  .btn-primary:hover { opacity: 0.92; }
+  .btn-walk { background: var(--patina); color: var(--paper-raised); }
+  .btn-walk:hover { opacity: 0.92; }
+  .btn-ghost {
+    background: transparent;
+    color: var(--muted);
+    font-weight: 400;
+    font-size: 14px;
+    padding: 10px 10px;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  .map-links {
+    display: flex;
+    gap: 10px;
+    margin: 4px 0 2px;
+  }
+  .map-link {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 11px 10px;
+    border-radius: 10px;
+    border: 1px solid var(--line);
+    background: var(--paper);
+    color: var(--ink);
+    font-size: 13.5px;
+    font-weight: 600;
+    text-decoration: none;
+  }
+  .map-link:active { transform: scale(0.98); }
+
+  .stop-list {
+    margin-top: 18px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 6px;
+  }
+  .dot {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: var(--line);
+  }
+  .dot.done { background: var(--patina); }
+  .dot.current { background: var(--rust); }
+
+  footer.tiny {
+    text-align: center;
+    font-size: 11px;
+    color: var(--muted);
+    margin-top: 14px;
+  }
+
+</style>
+
+<div class="app">
+
+  <div class="topbar">
+    <span class="title">St. Georg</span>
+    <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+    <span class="progress-label" id="progressLabel">0/20</span>
+  </div>
+
+  <div class="card" id="card"></div>
+
+  <footer class="tiny">Rundgang St. Georg</footer>
+</div>
+
+<script>
+(function () {
+  var stops = [
+  {
+    "title": "Centrum Moschee",
+    "address": "Böckmannstraße 40, 20099 Hamburg",
+    "desc": [
+      "Eine der bekanntesten Moscheen Hamburgs. Sie wurde von der türkischen Gemeinde gegründet und ist ein wichtiger Ort für Gebet, Bildung und den interreligiösen Dialog.",
+      "Weitere muslimische Einrichtungen in St. Georg sind:",
+      "Al Muhajirin Moschee, Kurdisch-Islamische Gemeinde, Bangladesche Islamic Center, Pak Islami Majlis e.V., Vahdet Islamische Kultur e.V."
+    ],
+    "nr": 1
+  },
+  {
+    "title": "Gurudwara Guru",
+    "address": "Brennerstraße 27, 20099 Hamburg",
+    "desc": [
+      "Wichtigster Sikh-Tempel in Hamburg. Er ist das religiöse Zentrum der Sikh-Gemeinde. Besonders bekannt ist der Langar, eine kostenlose Gemeinschaftsküche, in der jeder willkommen ist.",
+      "Als Sikhs werden die Anhänger des Sikhismus genannt, einer Glaubensgemeinschaft mit etwa 30 Millionen Anhängern, von denen die meisten im Nordwesten Indiens leben. Dort wurde die Religion im 15. Jahrhundert von Guru Nanak Dev gegründet – zu einer Zeit, als in der Region Buddhismus, Hinduismus und Islam aufeinandertrafen.",
+      "Die Sikhs verehren eine einzige Gottheit, die alle Menschen gleich geschaffen hat und möchte, dass sie sich einander schätzen und helfen. Das manifestiert sich im „Langar“, einer kostenlosen Gemeinschaftsküche, in der alle gemeinsam auf dem Boden essen."
+    ],
+    "nr": 2
+  },
+  {
+    "title": "St. Marien Dom",
+    "address": "Am Mariendom 7, 20099 Hamburg",
+    "desc": [
+      "Der St.-Marien-Dom ist ein wichtiges religiöses und kulturelles Zentrum in St. Georg. Er steht für die lange Geschichte der katholischen Gemeinde im Stadtteil. Gleichzeitig zeigt er, wie unterschiedliche religiöse und kulturelle Traditionen in St. Georg nebeneinander existieren und den Stadtteil prägen.",
+      "Der St. Marien-Dom ist die katholische Bischofs-Kirche Hamburgs und Sitz des Erzbischofs. Er wurde Ende des 19. Jahrhunderts im neugotischen Stil erbaut und ist das Zentrum des katholischen Lebens im Norden Deutschlands."
+    ],
+    "nr": 3
+  },
+  {
+    "title": "Caritas",
+    "address": "Danziger Straße 66, 20099 Hamburg",
+    "desc": [
+      "Die Caritas gibt es in Hamburg seit 1925. Sie leistet soziale Arbeit, dabei primär Hilfe für Obdachlose, anschlusslose Migranten und Jugendliche. Sie ist das römisch-katholische Äquivalent zur Diakonie und hat deutschlandweit über 740.000 Mitglieder."
+    ],
+    "nr": 4
+  },
+  {
+    "title": "Lange Reihe I",
+    "address": "Lange Reihe 63, 20099 Hamburg",
+    "desc": [
+      "Die Lange Reihe ist bekannt für ihre Cafés, Restaurants, Geschäfte und ihr vielfältiges Nachtleben. Sie gilt außerdem als ein wichtiger Treffpunkt der queeren Szene Hamburgs. Zusammen mit dem St.-Marien-Dom und dem Steindamm zeigt die Lange Reihe die besondere kulturelle Mischung St. Georgs: Religion, internationale Vielfalt und queere Kultur liegen hier nah beieinander und machen den Stadtteil zu einem der vielfältigsten Viertel Hamburgs."
+    ],
+    "politik": {
+      "question": "Diversität ist ein wichtiger Bestandteil von St. Georg und der Fokus dieses Projektes. Wie plant Ihre Partei, urbane/diverse Kultur in St. Georg zu schützen und zu fördern, und welche Stellung haben Sie zu diesen Kulturen?",
+      "summary": "Alle drei Parteien befürworten Vielfalt in St. Georg, setzen aber unterschiedliche Schwerpunkte: DIE LINKE auf finanzielle Förderung sozialer und kultureller Initiativen, die CDU auf Integration innerhalb gemeinsamer Werte und Rechtsordnung, und VOLT auf den Schutz der queeren Kultur als Kernanliegen der Partei.",
+      "answers": [
+        {
+          "party": "DIE LINKE",
+          "text": "Wir verstehen Diversität als wichtigen Baustein einer demokratisch-solidarischen Gesellschaft. Dies ist einerseits die Förderung verschiedener z.B. ethnischer oder sexueller Kulturen, aber es bedeutet für uns auch jedem Menschen die gleichen Chancen unabhängig von Lebenslage zu ermöglichen. Dazu wollen wir bürgergeführte Initiativen finanziell unterstützen, Kürzungen in sozialen, kulturellen und bildungspolitischen Bereichen lehnen wir ab."
+        },
+        {
+          "party": "CDU",
+          "text": "Wir erkennen die Wichtigkeit der Vielfalt in St. Georg an, doch befinden, dass sie nur funktioniert, wenn sie auf der Basis der gemeinsamen Werte und Rechtsordnung operiert. Dort, wo die Vielfalt tolerant ist und gesellschaftlichem Zusammenhalt stärkt, begrüßen wir sie, aber fundamentalistische Weltbilder und mangelhafte Integration lehnen wir entschieden ab. Das Ziel ist eine Förderung interkultureller Projekte und Begegnung mit anderen Kulturen basierend auf Augenhöhe und gegenseitigem Respekt."
+        },
+        {
+          "party": "VOLT",
+          "text": "St. Georg ist das queere Herz Hamburgs und einer der buntesten Stadtteile der Stadt. Volt will sich nicht mit Vielfalt schmücken, es ist das Herz der Partei. Um diese Vielfalt zu schützen, hat VOLT schon in viele verschiedene Projekte investiert, unter anderem haben sie in den Quartiersfonds eingezahlt. Gleichzeitig nimmt VOLT den Anstieg queerfeindlicher Straftaten sehr ernst. Das Ziel ist ein St. Georg, in dem jeder Mensch offen und ohne Angst leben kann."
+        }
+      ]
+    },
+    "nr": 5
+  },
+  {
+    "title": "Koppel 66",
+    "address": "Koppel 66, 20099 Hamburg",
+    "desc": [
+      "„Koppel 66“: Der Name und die Adresse zugleich. Ein Gebäude, ursprünglich im Jahr 1924 als Maschinenfabrik erbaut, in dem heutzutage an die 20 Künstler*innen Werkstätten und Ateliers mieten können und ihre Produkte verkaufen / ausstellen können. Mieter*innen sind außerdem Teil eines Fördervereins, welche gegründet wurde, um Kunsthandwerkern günstige Räume für die Ausstellung ihrer Arbeit zu bieten, aber auch kunstinteressierten Menschen leichteren Zugang zu Kunstwerkstätten zu ermöglichen. Und für die essensinteressierten Menschen unter uns ist das vegetarische Café Koppel zuständig, wo zusätzlich einmal im Monat Live-Konzerte mit kostenlosem Eintritt stattfinden. Wenn der Alltag im Haus euch nicht genug bietet, finden zweimal jährlich noch Kunsthandwerk-Messen statt: im Frühjahr an einem Wochenende im April oder Mai und an jedem Wochenende in der Adventszeit. Außerdem finden kleinere, regelmäßigere Benefizveranstaltungen statt, wie Konzerte oder auch Workshops."
+    ],
+    "nr": 6
+  },
+  {
+    "title": "Lange Reihe II",
+    "address": "Lange Reihe 23, 20099 Hamburg",
+    "desc": [
+      "Die Lange Reihe spielt wirtschaftlich gesehen eine Rolle als Einzelhandelsentwicklungsstandort. Sie ist historisch gewachsen und ist durch eine hohe Multifunktionalität und individuellen Einzelhandelsbesatz geprägt. Dabei besteht ein großer Anteil von Nicht-Handel, davon vor allem Gastronomie. Die Läden sind zu einem großen Teil inhabergeführt.\nIn der Langen Reihe herrscht ein hoher Digitalisierungsgrad: Mehr als die Hälfte der Unternehmen im Nonfood-Handel haben eine Homepage, ein Drittel hat einen Onlineshop. Außerdem besteht eine extrem niedrige Leerstandsquote von nur rund 3%.\nInsgesamt ist die Lange Reihe wirtschaftlich gesehen also ein moderner und zukunftsorientierter Einzelhandelsstandort mit langfristigem Entwicklungspotential.",
+      "Die Lange Reihe ist geprägt von Wohnen, Geschäften und Gastronomie – ganz anders als der Hauptbahnhof, wo täglich extrem viele Menschen zusammenkommen und so die Kriminalstatistik für ganz Sankt Georg prägen. Hier sind typische Straftaten eher Diebstähle, Sachbeschädigungen oder gelegentliche Konflikte im öffentlichen Raum. Sicherheit entsteht hier vor allem durch ein gutes Miteinander unterschiedlicher Gruppen."
+    ],
+    "nr": 7
+  },
+  {
+    "title": "VOLT Parteizentrale Hamburg-Nord",
+    "address": "Alstertwiete 5, 20099 Hamburg",
+    "desc": [
+      "Volt Deutschland, kurz VOLT, ist eine 2017 in Hamburg gegründete Kleinpartei und ein Ableger der europaweiten Vereinigung Volt Europa. Die Politik von VOLT lässt sich primär als paneuropäisch und sozialliberal beschreiben, doch in Hamburg ist VOLT unter anderem auch ein maßgeblicher Unterstützer queerer Kultur. Als eine von drei Parteien hat uns VOLT auf den eingesendeten Fragebogen geantwortet."
+    ],
+    "nr": 8
+  },
+  {
+    "title": "Hotel Atlantic",
+    "address": "An der Alster 72-79, 20099 Hamburg",
+    "desc": [
+      "Das Hotel Atlantic ist eines der bekanntesten und beliebtesten 5-Sterne-Hotels in Hamburg. Die Geschichte des Hotels begann im Jahr 1909, als Albert Ballin als bedeutender Hamburger Reeder das Hotel eröffnete und somit den maritimen Tourismus in Hamburg unterstützte. Das Hotel bot zu Beginn des 20. Jahrhunderts eine optimale Möglichkeit für Passagiere der bekannten HAPAG Hamburg-Amerika-Linie, in Hamburg zu übernachten, und somit auch die Wirtschaft Hamburgs und auch St. Georgs zu fördern. Wegen der bedeutenden Geschichte hinter dem Atlantic-Hotel wurde es 2010 denkmalgeschützt, und seitdem werden auch sämtliche Teile des Hotels renoviert und umgebaut.",
+      "Das Geschäftsmodell hinter dem Atlantic basiert heutzutage auf mehreren Einnahmequellen:"
+    ],
+    "list": [
+      "Übernachtungen als Kernumsatz des Hotels",
+      "Gastronomie",
+      "Events (Hochzeiten, Business-Events, Veranstaltungen in den Festsälen)",
+      "Immobilienentwicklung auf dem Nachbargrundstück – geplanter Bau eines zweiten Hotels, ein Moxy-Hotel neben dem Atlantic",
+      "Zukünftiger 1.500 Quadratmeter großer Spa-Bereich (Fertigstellung voraussichtlich 2028)"
+    ],
+    "politik": {
+      "question": "Wie wichtig ist St. Georg als Stadtteil für Ihre Partei?",
+      "summary": "Alle Parteien sehen St. Georg als bedeutenden, aber herausfordernden Stadtteil: DIE LINKE betont soziale Probleme und Solidarität, die CDU kritisiert den Senat und sieht sich als Anwalt der Bewohner, VOLT nennt konkrete Projekte wie die Umgestaltung des Spadenteichs.",
+      "answers": [
+        {
+          "party": "DIE LINKE",
+          "text": "St. Georg zeigt die gesellschaftlichen Herausforderungen auf, denen Hamburg gerade begegnet. Beispiele wären Armut, soziale Ungleichheit, Ausgrenzung und Gentrifizierung. St. Georg ist jedoch auch ein Stadtteil mit faszinierender Geschichte und kultureller Vielfalt. Das Zusammenleben verschiedener Kulturen kann man in St. Georg gut sehen. St. Georg ist aber primär ein Ort der Solidarität, an dem Menschen sich füreinander einsetzen und gesellschaftlich engagieren. All dies macht den Stadtteil für uns besonders wichtig."
+        },
+        {
+          "party": "CDU",
+          "text": "St. Georg nimmt für uns eine Schlüsselrolle ein, da die Zustände im Stadtteil die ganze Stadt betreffen. Unserer Meinung nach hat der Senat, geführt von SPD und den Grünen, die Augen vor den enormen Herausforderungen und Problemen vor Ort verschlossen. Wir jedoch sprechen diese Probleme konsequent an und suchen nach Lösungen. Wir verstehen es als Kernaufgabe, in St. Georg dort Lösungen anzubieten, wo der Senat die Orientierung zu den Bürgern verloren hat. Wir stellen St. Georg und die Menschen dort in den Fokus unserer Politik, um den Stadtteil wieder sicher, lebenswert und zukunftsfähig zu machen."
+        },
+        {
+          "party": "VOLT",
+          "text": "Wir halten alle Stadtteile Hamburgs gleichermaßen wichtig, aber wir haben dennoch in St. Georg Fokusthemen, die wir anstoßen (ein Beispiel ist die Umgestaltung des Spadenteichs und der dortigen Aufwertung des Platzes). Außerdem haben wir im Stadtteilbeirat von St. Georg ein Fraktionsmitglied, das uns über relevante Themen informiert, damit wir uns beteiligen können."
+        }
+      ]
+    },
+    "nr": 9
+  },
+  {
+    "title": "Ohnsorg-Theater",
+    "address": "Heidi-Kabel-Platz 1, 20099 Hamburg",
+    "desc": [
+      "Das Ohnsorg-Theater in Hamburg ist das berühmteste plattdeutsche Volkstheater Deutschlands. Es wurde 1902 von Richard Ohnsorg gegründet, um die niederdeutsche Sprache zu pflegen. Ab 1954 erlangte das Ensemble durch Fernsehübertragungen im NDR bundesweite Kult-Berühmtheit, insbesondere durch die Schauspiel-Legenden Heidi Kabel und Henry Vahl.",
+      "Im Jahr 2011 zog das Theater aus der Innenstadt in das moderne Bieberhaus am Hamburger Hauptbahnhof um. Heute zeigt das Haus neben klassischen Komödien auch Musicals und ernste Dramen auf Plattdeutsch.",
+      "Damit auch Zuschauer ohne Plattdeutsch-Kenntnisse alles verstehen, laufen im großen Saal bei vielen Stücken hochdeutsche Übertitel auf LED-Wänden."
+    ],
+    "nr": 10
+  },
+  {
+    "title": "Deutsches SchauSpielHaus",
+    "address": "Kirchenallee 39, 20099 Hamburg",
+    "desc": [
+      "Das Deutsche Schauspielhaus ist mit rund 1200 Plätzen das größte Sprechtheater Deutschlands. Nachdem es auf private Initiative von Hamburger Bürgern gegründet wurde, wurde es am 15. September 1900 mit einer Aufführung der „Iphigenie auf Taurus“ feierlich eröffnet. Das Schauspielhaus hat die Theatergeschichte von Hamburg im 20. Jahrhundert entscheidend mitgeprägt und zählt zu den führenden Theatern Deutschlands.",
+      "Neben der großen Bühne gehören auch Spielstätten wie der MalerSaal und das Junge SchauSpielHaus in Barmbek zum Ensemble, wodurch generationenübergreifende und zeitgenössische Stoffe auf die Bühne gebracht werden."
+    ],
+    "nr": 11
+  },
+  {
+    "title": "Hauptbahnhof",
+    "address": "Hachmannplatz 10, 20099 Hamburg",
+    "desc": [
+      "Der Hauptbahnhof ist einer der wichtigsten Verkehrsknotenpunkte der Stadt, weshalb Sicherheit hier ein großes Thema ist. Seit Oktober 2023 gilt deshalb eine Waffenverbotszone, seit April 2024 zusätzlich ein Alkoholverbot. Die Bundespolizei hat seitdem über 500 Waffen sichergestellt, darunter 350 Messer. Die Zahl der Gewaltdelikte am Hauptbahnhof sank dadurch um rund 25 Prozent, von 720 auf 546 im Jahr.",
+      "Im angrenzenden Stadtteil Sankt Georg zeigt sich im gleichen Zeitraum ein gegenteiliger Trend: Die Gewaltkriminalität stieg im ersten Halbjahr 2024 um rund ein Drittel, mit 82 Messerangriffen. Ein möglicher Grund: Ein Teil der Konflikte könnte sich einfach in die Umgebung verlagert haben, wo die Verbote nicht gelten – mehr Kontrolle an einem Ort verschiebt Probleme nur, statt sie zu lösen."
+    ],
+    "politik": {
+      "question": "St. Georg ist ein von Obdachlosigkeit und Drogenkriminalität durchzogener Stadtteil. Welche Projekte planen Sie, um diese Probleme zu beseitigen, und was sind fundamentale Lösungsansätze?",
+      "summary": "Die Parteien sind sich einig, dass reine Verdrängung keine Lösung ist, schlagen aber unterschiedliche Wege vor: DIE LINKE setzt auf bezahlbaren Wohnraum und Therapieangebote, die CDU auf Dezentralisierung der Hilfsangebote und mehr Polizeipräsenz, VOLT auf mehr Konsumräume und bezirksübergreifende Zusammenarbeit.",
+      "answers": [
+        {
+          "party": "DIE LINKE",
+          "text": "Wir erkennen klar an: niemand ist freiwillig obdachlos. Hinter diesen Menschen stecken oftmals Schicksalsschläge, verbunden mit Krankheit, Armut und sozialer Ausgrenzung. Die jetzige „Verdrängungspolitik“ lehnen wir ab. Sie löst keine Probleme und erschwert den Zugang zu Hilfe für betroffene Menschen. Konkrete Lösungen, die wir verfolgen wollen, sind zum Beispiel der Ausbau von bezahlbarem Wohnraum und mehr therapeutische Angebote."
+        },
+        {
+          "party": "CDU",
+          "text": "Obdachlosigkeit und Drogenkriminalität ist eines der größten Probleme St. Georgs, und eine große Belastung. In der Sozialpolitik erfordert es ein Umdenken: Aktuell bekämpfen die Hilfsangebote eher Symptome, anstatt die Probleme zu lösen. Das Ziel ist unserer Meinung nach Dezentralisierung der Hilfsangebote über Hamburg, um St. Georg zu entlasten. In der Sicherheitspolitik muss Drogenkriminalität klarer bekämpft werden, sie gefährdet den sozialen Frieden. Jede Person, die sich in St. Georg befindet, hat das Recht, sich sicher zu fühlen. Hierbei würde unserer Meinung nach mehr Polizeipräsenz und mehr Videoüberwachung an bekannten Brennpunkten helfen."
+        },
+        {
+          "party": "VOLT",
+          "text": "Verdrängung hilft niemandem. Drogenkranke, die vom Hauptbahnhof vertrieben werden, weichen in Wohngebiete aus. Wir brauchen echte Hilfsangebote. Die Zahlen der Drogentoten steigen, doch in Konsumräumen wie z.B. dem Drob Inn ist bis jetzt noch keiner gestorben. Auch braucht es mehr Anlaufstellen wie in der Repsoldstraße 27, wo es Übergangsplätze, Beratung und psychiatrische Ambulanz gibt. Wir erkennen diese Ziele klar als bezirksübergreifend an und wollen deshalb auch in der Bürgerschaft mitgestalten."
+        }
+      ]
+    },
+    "nr": 12
+  },
+  {
+    "title": "Wandelhalle",
+    "address": "Glockengießerwall 8, 20095 Hamburg",
+    "desc": [
+      "Der Hamburger Hauptbahnhof und der ZOB sind wichtige Verkehrsknotenpunkte für die Wirtschaft der Stadt. Täglich nutzen sehr viele Menschen den Hauptbahnhof. Dadurch profitieren Geschäfte, Bäckereien, Restaurants und andere Unternehmen in der Umgebung. Auch für den Tourismus ist der Bahnhof wichtig, weil viele Besucher dort ankommen und anschließend Geld in Hamburg ausgeben. Der ZOB verbindet Hamburg mit vielen Städten im In- und Ausland. Fernbusunternehmen zahlen Gebühren für die Nutzung des Busbahnhofs. Gleichzeitig entstehen Arbeitsplätze, zum Beispiel im Verkauf, bei Verkehrsunternehmen und in der Reinigung. Beide Verkehrsanlagen stärken deshalb den Handel, den Tourismus und den Arbeitsmarkt in Hamburg und damit Hamburg insgesamt."
+    ],
+    "nr": 13
+  },
+  {
+    "title": "Bahnhofsmission",
+    "address": "Glockengießerwall 7, 20095 Hamburg",
+    "desc": [
+      "Die Bahnhofsmission ist am Hamburger Hauptbahnhof ein zentraler Knotenpunkt in der sozialen Struktur zur Unterstützung von Obdachlosigkeit. Obdachlose können hier unter anderem Wertgegenstände lagern, medizinische Versorgung erhalten oder Ansprechpartner für aktuelle Bedürfnisse und Probleme finden. Die Bahnhofsmission arbeitet mit anderen NGOs rund um den Hamburger Hauptbahnhof eng zusammen und ist für die soziale Hilfe vor Ort unerlässlich."
+    ],
+    "politik": {
+      "question": "Es gibt mehrere NGOs in St. Georg, die versuchen, soziale Probleme zu lösen (z. B. die Diakonie oder die Bahnhofsmission). Arbeiten Sie mit diesen NGOs zusammen, planen Sie, diese zu unterstützen, und wie könnte diese Zusammenarbeit/Unterstützung aussehen?",
+      "summary": "Alle drei Parteien befürworten die Zusammenarbeit mit NGOs wie der Diakonie oder der Bahnhofsmission, unterscheiden sich aber in der Ausgestaltung: DIE LINKE will dauerhafte Finanzierung und politischen Austausch, die CDU fordert mehr Kontrolle über die Mittelverwendung, und VOLT setzt auf den Quartiersfonds als langfristiges Finanzierungsinstrument.",
+      "answers": [
+        {
+          "party": "DIE LINKE",
+          "text": "Die Arbeit von NGOs ist ein unverzichtbarer Bestandteil unserer solidarischen Gesellschaft. Sie leisten wichtige Arbeit, wo Unterstützung benötigt wird. Wir wollen diese sozialen Projekte dauerhaft finanziell absichern. Zusammenarbeit geschieht z. B. durch politische Gespräche über aktuelle Probleme oder Kooperation bei wichtigen Themen. Auch bringen wir die Anliegen von sozialen Initiativen in den politischen Diskurs mit ein. Die wichtige Arbeit, die diese NGOs verrichten, wollen wir sichtbarer machen."
+        },
+        {
+          "party": "CDU",
+          "text": "Traditionsreiche Akteure vor Ort wie die Diakonie oder Bahnhofsmission leisten vor Ort unverzichtbare Arbeit. Doch wir sehen NGOs, bei welchen Steuergelder in unübersichtlichen Strukturen versickern, durchaus kritisch. Für die CDU gilt: Staatliche Förderungen müssen zielgerichtet sein, und der Nutzen für St. Georg muss messbar sein. Kooperation mit bewährten Institutionen muss intensiviert werden, aber staatliche Unterstützung von Kleinstprojekten muss auch geprüft werden. Die Hilfestruktur in St. Georg muss organisierter und effizienter werden."
+        },
+        {
+          "party": "VOLT",
+          "text": "Die Arbeit mit NGOs ist für uns essenziell; ohne sie geht nichts. Die Arbeit dieser Organisationen wollen wir, so gut es geht, unterstützen. Eines der besten Instrumente hierfür ist der Quartiersfonds, über welchen 2025 unter anderem über 35.000 Euro an die Diakonie gingen. Wir wollen diese Einrichtungen langfristiger finanzieren und uns von einem Jahr-für-Jahr-Modell abwenden."
+        }
+      ]
+    },
+    "nr": 14
+  },
+  {
+    "title": "Museum für Kunst und Gewerbe",
+    "address": "Brockesstraße 4, 20097 Hamburg",
+    "desc": [
+      "Das Museum für Kunst und Gewerbe wurde 1877 eröffnet und ist heute eines der wichtigsten Häuser für Gestaltung in Europa. Seine einzigartige Sammlung reicht von der Antike bis zu den Innovationen der Gegenwart und umfasst unterschiedliche Kulturräume. Zahlreiche Ausstellungen, Veranstaltungen und Projekte öffnen den Blick auf die gesellschaftliche Entwicklung und hinterfragen die Gestaltung der Welt. Neben ästhetischen und unterhaltsamen Themen stehen verstärkt gesellschaftspolitische Fragen im Fokus, die sich um Umwelt, Nachhaltigkeit und spekulative Zukunftsvisionen drehen."
+    ],
+    "nr": 15
+  },
+  {
+    "title": "ZOB",
+    "address": "Adenauerallee 78, 20097 Hamburg",
+    "politik": {
+      "question": "Welche wichtigen Einflüsse hatte Ihre Partei historisch in St. Georg?",
+      "summary": "Die Antworten zeigen unterschiedliche historische Bezüge: DIE LINKE verweist auf eine lange Tradition sozialer Bewegungen, die CDU auf die Sicherheitspolitik unter Bürgermeister Ole von Beust (2001–2011), und VOLT räumt ein, als junge Partei noch keinen historischen Einfluss in St. Georg zu haben.",
+      "answers": [
+        {
+          "party": "DIE LINKE",
+          "text": "Linke Bewegungen haben in St. Georg eine lange Geschichte. Aus dem Engagement von Menschen, die sich für soziale Gerechtigkeit und Solidarität einsetzten, sind viele politische und soziale Initiativen entstanden. Nachbarschaftsprojekte, soziale Einrichtungen, Kämpfe für bezahlbaren Wohnraum und Räume für gemeinschaftliches Leben gehören dazu. Der Gedanke, aufeinander aufzupassen und sich gegenseitig zu unterstützen, zieht sich durch die Geschichte des Stadtteils und prägt St. Georg bis heute."
+        },
+        {
+          "party": "CDU",
+          "text": "Der bedeutendste historische Einfluss in St. Georg geschah 2001–2011 in der Regierungszeit von Ole von Beust. Der damalige CDU-Bürgermeister rückte St. Georg in den politischen Fokus. Die Herausforderungen damals ähnelten den heutigen sehr, primär massive Probleme mit Drogen- und Straßenkriminalität, die vom Hauptbahnhof ausgingen. Eine konsequente Sicherheits- und Ordnungspolitik drängte diese Missstände erfolgreich zurück, und der Stadtteil wurde baulich aufgewertet. Wir wissen, dass die Maßnahmen von damals sich auf die heutige Zeit nicht 1-zu-1 übertragen lassen, doch die Zeit dient als positiver Beleg dafür, dass politische Entschlossenheit die Lage vor Ort spürbar verbessern kann. Die CDU sieht sich heute als Anwalt der Bewohner von St. Georg – insbesondere bei Themen, die unserer Meinung nach der aktuelle Senat verschweigt und/oder ignoriert."
+        },
+        {
+          "party": "VOLT",
+          "text": "Da unsere Partei erst kürzlich gegründet wurde, haben wir in St. Georg noch keinen historischen Einfluss vorzuweisen. Wir hoffen, dass sich dies bald ändern wird."
+        }
+      ]
+    },
+    "nr": 16,
+    "desc": [
+      "Der Zentraler Omnibusbahnhof Hamburg (ZOB) ist der wichtigste und modernste Knotenpunkt für den nationalen und internationalen Fernbusverkehr in Norddeutschland. Er liegt direkt am Hamburger Hauptbahnhof und verbindet die Hansestadt mit zahlreichen Metropolen in ganz Europa. Durch sein markantes, sichelförmiges Glasdach gilt der „Bus-Port“ zudem als ein architektonisches Wahrzeichen der Stadt."
+    ]
+  },
+  {
+    "title": "Steindamm",
+    "address": "Steindamm 8, 20099 Hamburg",
+    "desc": [
+      "Der Steindamm ist eine der vielfältigsten Straßen St. Georgs. Hier treffen Menschen mit unterschiedlichen kulturellen Hintergründen aufeinander. Restaurants, Geschäfte und kulturelle Angebote machen die Straße zu einem lebendigen Ort, an dem sich die internationale und weltoffene Seite des Stadtteils besonders deutlich zeigt.",
+      "Der Steindamm liegt direkt am Hauptbahnhof, weshalb Sicherheit hier ein großes Thema ist. 2023 wurden in Sankt Georg 465 Raubdelikte registriert – ein Anstieg von 21 Prozent, fast jeder fünfte Raub Hamburgs passierte hier. Ein Grund: verstärkte Polizeikontrollen machten zuvor unentdeckte Straftaten sichtbar. Sicherheit hängt eben auch von Hilfsangeboten und gutem Zusammenleben ab."
+    ],
+    "nr": 17
+  },
+  {
+    "title": "Hansaplatz",
+    "address": "Hansaplatz, 20099 Hamburg",
+    "politik": {
+      "question": "Welche Ideen und Pläne haben Sie allgemein für St. Georg?",
+      "summary": "Die Parteien setzen unterschiedliche Schwerpunkte für St. Georg: DIE LINKE will mehr in soziale Infrastruktur statt Repression investieren, die CDU setzt auf Ordnungsdienste, bessere Baustellen-Koordination und die Verteilung Geflüchteter, und VOLT auf Hilfsangebote statt Verdrängung sowie transparente Förderstrukturen.",
+      "answers": [
+        {
+          "party": "DIE LINKE",
+          "text": "Wir wünschen uns, dass öffentliche Gelder stärker in soziale Unterstützung, Prävention und konkrete Hilfen investiert werden, anstatt auf repressive Maßnahmen zu setzen. Hamburg ist eine wohlhabende Stadt, doch für Menschen mit Schwierigkeiten braucht es mehr bezahlbaren Wohnraum und eine bessere soziale Infrastruktur. Konkrete Maßnahmen wären zum Beispiel mehr Grünflächen, Trinkwasserspenden oder Räume für sicheren und kostenfreien Aufenthalt. Unser Ziel für St. Georg ist ein Stadtteil, in dem alle Menschen dazugehören und soziale Teilhabe gleichermaßen möglich ist."
+        },
+        {
+          "party": "CDU",
+          "text": "Wir haben konkrete Ideen für Verbesserungen in St. Georg. Bzgl. der Sicherheit und Ordnung wollen wir z. B. die Wiedereinführung eines Bezirksordnungsdienstes, damit an Orten wie dem Hansaplatz direkte Ansprechpartner präsent sind. Im Bereich von Verkehr und Infrastruktur ist uns eine deutlich bessere Koordinierung von Baustellen wichtig, um Baustellenchaos zu vermeiden. Außerdem wollen wir den ÖPNV sauberer und sicherer gestalten. Im Bezug auf Sozialpolitik wollen wir geflüchtete Menschen, die bis dato in St. Georg untergebracht wurden, auf das gesamte Hamburger Stadtgebiet verteilen, um St. Georg zu entlasten. Und im Bezug auf Wohnen und Stadtklima ist uns wichtig, den einzigartigen Charakter von St. Georg zu erhalten. Neuen Wohnraum wollen wir also durch Nachverdichtung und Dachgeschossausbau erschaffen und Baulücken schließen. Außerdem wollen wir den Stadtteil begrünen, um die Lebensqualität zu erhöhen."
+        },
+        {
+          "party": "VOLT",
+          "text": "Außer bereits erwähnten Projekten wollen wir in St. Georg im Bezug auf Sicherheit Hilfe statt Verdrängung, mehr sichere Konsumräume und mehr zielführende Sozialarbeit. Finanzierung von queeren und sozialen Angeboten wollen wir garantieren, um die Arbeit an langfristigeren Projekten zu ermöglichen. Wichtig ist uns ein transparenter Quartiersfonds, damit Träger in St. Georg langfristiger planen können."
+        }
+      ]
+    },
+    "nr": 18,
+    "desc": [
+      "Der Hansaplatz ist ein bekannter, historischer Stadtplatz im Hamburger Stadtteil St. Georg, der vor allem für seinen imposanten, 17 Meter hohen Hansabrunnen aus dem Jahr 1878 bekannt ist. Trotz seiner zentralen Lage nahe dem Hauptbahnhof gilt er seit vielen Jahren als sozialer Brennpunkt und ist heute als Waffenverbotsgebiet sowie durch Videoüberwachung geprägt. Heutzutage steht der Platz wegen anhaltender Probleme mit Drogenkriminalität, Prostitution und Konflikten im Obdachlosen- und Trinkermilieu regelmäßig im Fokus von Polizei und Stadtentwicklung."
+    ]
+  },
+  {
+    "title": "SPD-Parteigebäude",
+    "address": "Kurt-Schumacher-Allee 10, 20097 Hamburg",
+    "desc": [
+      "Als einzige Partei, die derzeit im Senat sitzt, hat die Sozialdemokratische Partei Deutschlands ihr Parteigebäude in St. Georg. Die SPD, die sich selber traditionell als Arbeiterpartei versteht, ist schon lange in Hamburg historisch sehr relevant, auch wenn ihre Mitgliederzahlen und Stimmen bei den Wahlen seit 1970 eher sinken als steigen. Dennoch stellt die SPD zurzeit mit Peter Tschentscher den Bürgermeister Hamburgs und sitzt mit den Grünen im Senat, auch wenn die Politik viel kritisiert wird. Vor allem in der Sozialpolitik ist St. Georg ein wichtiger Bestandteil der Diskussion, doch die Politik der derzeitigen Koalition wird oft kritisiert und als „Verdrängungspolitik“ bezeichnet."
+    ],
+    "nr": 19
+  },
+  {
+    "title": "Schule",
+    "address": "Norderstraße 163-165, 20097 Hamburg",
+    "politik": {
+      "question": "Welche Stärken und Schwächen sehen Sie in St. Georg?",
+      "summary": "Alle drei Parteien sehen in der Vielfalt und dem Engagement der Menschen eine Stärke St. Georgs, benennen aber unterschiedliche Schwächen: DIE LINKE betont soziale Ungleichheit, die CDU die Überlastung des Stadtteils, und VOLT die unsichere Finanzierung vieler Vereine sowie die Sicherheitslage in den Wohnstraßen.",
+      "answers": [
+        {
+          "party": "DIE LINKE",
+          "text": "Die größte Stärke in St. Georg ist die lebendige und solidarische Gemeinschaft. Es gibt viele engagierte Menschen und Gruppen, die sich für ein vielfältiges und soziales Miteinander einsetzen. So entsteht Unterstützung für Menschen, die Hilfe benötigen. Doch Armut, soziale Ungleichheit, steigende Mieten und Verdrängungspolitik stellen den Stadtteil vor viele Herausforderungen. Wir sind deshalb davon überzeugt, dass es eine Politik braucht, die soziale Verantwortung übernimmt. Gelder sollten in sinnführende Projekte wie Gesundheitsversorgung und Bildungsangebote investiert werden. Nur so kann St. Georg ein Stadtteil bleiben, in dem Vielfalt, Solidarität und ein gutes Zusammenleben für alle Menschen sind."
+        },
+        {
+          "party": "CDU",
+          "text": "St. Georg als Stadtteil stößt an die Grenzen des sozialen Zusammenhalts. Ein Stadtteil kann nicht die Last einer Millionenstadt tragen. Die Themen Obdachlosigkeit, Suchtpolitik und mangelnde Integration – wir alle sehen die Überlastung von St. Georg und die Vernachlässigung durch den Senat. Aber es gibt auch Stärken: Die Lebendigkeit und die Vielfalt von St. Georg sind eine, auch der Standortvorteil ist nicht zu vernachlässigen. Die Lange Reihe bietet exzellenten Einzelhandel und Gastronomie. Durch konsequente Maßnahmen könnte auch der Steindamm zu einer vielfältigen und großartigen Einkaufsstraße werden."
+        },
+        {
+          "party": "VOLT",
+          "text": "Stärken: Die Vielfalt, das queere Zentrum Hamburgs, die lebendige Lange Reihe, das starke Vereinsleben, die zentrale Lage und das hohe Engagement des örtlichen Stadtteilbeirates. Schwächen: Die Drogen- und Sicherheitslage in den Wohnstraßen, zu wenige gute Aufenthaltsorte, viel Verkehr in engen Straßen, steigende queerfeindliche Gewalt, und Vereine, die von unsicherer Finanzierung leben. St. Georg hat viel zu schützen und ein paar Probleme, die man nicht wegreden sollte."
+        }
+      ]
+    },
+    "nr": 20
+  }
+];
+  // state: { phase: 'welcome'|'walk'|'arrived'|'done', index: 0-based into stops }
+  var state = { phase: "welcome", index: 0 };
+
+  try {
+    var saved = JSON.parse(localStorage.getItem("rundgang-state") || "null");
+    if (saved && typeof saved.index === "number" && saved.phase) state = saved;
+  } catch (e) {}
+
+  function save() {
+    try { localStorage.setItem("rundgang-state", JSON.stringify(state)); } catch (e) {}
+  }
+
+  function esc(s) {
+    return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;");
+  }
+
+  function mapsLinks(s) {
+    var query = s.mapQuery || s.address;
+    var enc = encodeURIComponent(query);
+    return {
+      google: "https://www.google.com/maps/dir/?api=1&destination=" + enc + "&travelmode=walking",
+      apple: "https://maps.apple.com/?daddr=" + enc + "&dirflg=w"
+    };
+  }
+
+  function renderPolitik(politik) {
+    var h = '<details class="politik"><summary>Politik</summary>';
+    h += '<p class="politik-question">' + esc(politik.question) + '</p>';
+    if (politik.summary) {
+      h += '<p class="politik-summary">' + esc(politik.summary) + '</p>';
+    }
+    for (var i = 0; i < politik.answers.length; i++) {
+      var a = politik.answers[i];
+      h += '<p class="politik-answer"><span class="party">' + esc(a.party) + ':</span> „' + esc(a.text) + '“</p>';
+    }
+    h += '</details>';
+    return h;
+  }
+
+  function render() {
+    var card = document.getElementById("card");
+    var total = stops.length;
+    var doneCount = state.phase === "welcome" ? 0 : state.phase === "done" ? total : state.index + (state.phase === "arrived" ? 1 : 0);
+    document.getElementById("progressFill").style.width = (100 - (doneCount / total * 100)) + "%";
+    document.getElementById("progressLabel").textContent = (state.phase === "welcome" ? 0 : state.phase === "done" ? total : state.index + 1) + "/" + total;
+
+    var html = "";
+
+    if (state.phase === "welcome") {
+      html += '<div class="kicker">Start</div>';
+      html += '<h1 class="screen-title">Willkommen beim Rundgang durch St. Georg</h1>';
+      html += '<p class="greeting">Sch\u00f6n, dass ihr dabei seid! Dieser Guide begleitet euch zu ' + total + ' Stationen im Stadtteil \u2013 zu Religion, Kunst, Wirtschaft, Sicherheit, Politik und Kultur. Startpunkt ist die Brecht-Schule Hamburg.</p>';
+      html += '<div class="btn-row"><button class="btn btn-primary" id="btnGo">Los geht&rsquo;s \u2192</button></div>';
+    } else if (state.phase === "walk") {
+      var s = stops[state.index];
+      html += '<div class="kicker walk">Unterwegs &middot; Station ' + s.nr + ' von ' + total + '</div>';
+      html += '<h1 class="screen-title">' + esc(s.title) + '</h1>';
+      html += '<div class="address">\ud83d\udccd ' + esc(s.address) + '</div>';
+      var links = mapsLinks(s);
+      html += '<div class="map-links">';
+      html += '<a class="map-link" href="' + links.google + '" target="_blank" rel="noopener">\ud83d\uddfa\ufe0f Google Maps</a>';
+      html += '<a class="map-link" href="' + links.apple + '" target="_blank" rel="noopener">\ud83e\udded Apple Karten</a>';
+      html += '</div>';
+      html += '<p class="desc">Tippt auf einen Link, um die Route zu dieser Adresse zu \u00f6ffnen. Wenn ihr angekommen seid, tippt unten auf weiter.</p>';
+      html += '<div class="btn-row">';
+      html += '<button class="btn btn-primary" id="btnArrived">Ich bin da \u2192</button>';
+      html += '<button class="btn btn-ghost" id="btnBack">\u2190 zur\u00fcck</button>';
+      html += '</div>';
+    } else if (state.phase === "arrived") {
+      var s2 = stops[state.index];
+      var isLast = state.index === total - 1;
+      html += '<div class="kicker">Station ' + s2.nr + ' von ' + total + '</div>';
+      html += '<h1 class="screen-title">' + esc(s2.title) + '</h1>';
+      if (s2.desc) {
+        for (var d = 0; d < s2.desc.length; d++) {
+          html += '<p class="desc">' + esc(s2.desc[d]) + '</p>';
+        }
+      }
+      if (s2.list) {
+        html += '<ul class="desc-list">';
+        for (var li = 0; li < s2.list.length; li++) {
+          html += '<li>' + esc(s2.list[li]) + '</li>';
+        }
+        html += '</ul>';
+      }
+      if (s2.politik) {
+        html += renderPolitik(s2.politik);
+      }
+      html += '<div class="btn-row">';
+      html += '<button class="btn btn-walk" id="btnNext">' + (isLast ? 'Rundgang beenden \u2713' : 'Weiter zur n\u00e4chsten Station \u2192') + '</button>';
+      html += '<button class="btn btn-ghost" id="btnBack">\u2190 zur\u00fcck</button>';
+      html += '</div>';
+    } else if (state.phase === "done") {
+      html += '<div class="kicker">Fertig</div>';
+      html += '<h1 class="screen-title">Geschafft! \ud83c\udf89</h1>';
+      html += '<p class="greeting">Ihr habt alle ' + total + ' Stationen des Rundgangs durch St. Georg besucht. Danke, dass ihr dabei wart!</p>';
+      html += '<div class="btn-row">';
+      html += '<button class="btn btn-walk" id="btnRestart">Rundgang neu starten</button>';
+      html += '</div>';
+    }
+
+    html += '<div class="stop-list">';
+    for (var i = 0; i < total; i++) {
+      var cls = "dot";
+      if (state.phase === "done" || i < state.index || (i === state.index && state.phase === "arrived")) cls += " done";
+      if (i === state.index && state.phase !== "done" && state.phase !== "welcome") cls += " current";
+      html += '<span class="' + cls + '"></span>';
+    }
+    html += '</div>';
+
+    card.innerHTML = html;
+    wire();
+  }
+
+  function wire() {
+    var go = document.getElementById("btnGo");
+    if (go) go.onclick = function () { state = { phase: "walk", index: 0 }; save(); render(); };
+
+    var arrived = document.getElementById("btnArrived");
+    if (arrived) arrived.onclick = function () { state.phase = "arrived"; save(); render(); };
+
+    var next = document.getElementById("btnNext");
+    if (next) next.onclick = function () {
+      if (state.index < stops.length - 1) { state = { phase: "walk", index: state.index + 1 }; }
+      else { state = { phase: "done", index: state.index }; }
+      save(); render();
+    };
+
+    var back = document.getElementById("btnBack");
+    if (back) back.onclick = function () {
+      if (state.phase === "arrived") { state.phase = "walk"; }
+      else if (state.phase === "walk" && state.index > 0) { state = { phase: "arrived", index: state.index - 1 }; }
+      else if (state.phase === "walk" && state.index === 0) { state = { phase: "welcome", index: 0 }; }
+      save(); render();
+    };
+
+    var restart = document.getElementById("btnRestart");
+    if (restart) restart.onclick = function () { state = { phase: "welcome", index: 0 }; save(); render(); };
+
+  }
+
+  render();
+})();
+</script>
+
+</body></html>
